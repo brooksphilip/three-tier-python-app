@@ -2,10 +2,13 @@ FROM cgr.dev/chainguard/python:latest-dev AS builder
 
 WORKDIR /app
 
-COPY requirements.txt .
+# Copy pip.conf for custom package index
+COPY pip.conf /etc/pip.conf
 
-RUN python -m venv /app/venv && \ 
-    /app/venv/bin/pip install --no-cache-dir -r requirements.txt
+COPY backend/requirements.txt requirements.txt
+
+RUN python -m venv /app/venv && \
+    /app/venv/bin/pip install --no-cache-dir -r requirements.cg.txt
 
 FROM cgr.dev/chainguard/python:latest
 
@@ -14,7 +17,7 @@ WORKDIR /app
 ENV PYTHONUNBUFFERED=1
 ENV PATH="/venv/bin:$PATH"
 
-COPY . .
+COPY backend/ .
 COPY --from=builder /app/venv /venv
 
 ENTRYPOINT [ "python", "wsgi.py" ]

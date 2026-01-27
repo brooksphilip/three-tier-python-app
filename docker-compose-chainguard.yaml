@@ -2,18 +2,18 @@ services:
   frontend:
     image: three-tier-frontend-cg:latest
     container_name: cg-frontend
-    build: 
-      context: ./frontend
-      dockerfile: ./Dockerfile-chainguard
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile-chainguard
     depends_on:
       - backend
 
   backend:
     image: three-tier-backend-cg:latest
     container_name: cg-backend
-    build: 
-      context: ./backend
-      dockerfile: ./Dockerfile-chainguard
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile-chainguard
     ports:
       - "5000:5000"
     depends_on:

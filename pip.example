@@ -1,0 +1,8 @@
+[global]
+index-url = http://YOUR_DEV_IP:8080/simple/
+trusted-host = YOUR_DEV_IP
+#extra-index-url = https://pypi.org/simple/
+
+
+[install]
+trusted-host = YOUR_DEV_IP

@@ -2,15 +2,18 @@ FROM cgr.dev/chainguard/python:latest-dev as builder
 
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt --user
+# Copy pip.conf for custom package index
+COPY pip.conf /etc/pip.conf
+
+COPY frontend/requirements.cg.txt requirements.cg.txt
+RUN pip install --no-cache-dir -r requirements.cg.txt --user
 
 FROM cgr.dev/chainguard/python:latest
 
 WORKDIR /app
 
 COPY --from=builder /home/nonroot/.local /home/nonroot/.local
-COPY . .
+COPY frontend/ .
 
 ENV PATH=/home/nonroot/.local/bin:$PATH
 
