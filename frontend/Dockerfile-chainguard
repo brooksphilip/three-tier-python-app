@@ -1,0 +1,17 @@
+FROM cgr.dev/chainguard/python:latest-dev as builder
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt --user
+
+FROM cgr.dev/chainguard/python:latest
+
+WORKDIR /app
+
+COPY --from=builder /home/nonroot/.local /home/nonroot/.local
+COPY . .
+
+ENV PATH=/home/nonroot/.local/bin:$PATH
+
+CMD ["python", "src/server.py"]
