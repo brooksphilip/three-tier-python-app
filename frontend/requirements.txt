@@ -4,6 +4,9 @@ Flask==3.0.0
 # WSGI server for production
 gunicorn==21.2.0
 
+#Chainguard
+aiohttp==3.9.1
+
 # Optional: Additional useful packages you can swap in/out
 # Flask-CORS==4.0.0  # For CORS support
 # requests==2.31.0   # For making HTTP requests
