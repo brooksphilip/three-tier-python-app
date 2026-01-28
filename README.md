@@ -41,7 +41,7 @@ A three-tier microservices course registration application with **Python Flask f
 
 ## Quick Start
 
-### Clone Repo
+#### Clone Repo
 ```bash
 git clone https://github.com/brooksphilip/three-tier-python-app
 cd three-tier-python-app
