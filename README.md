@@ -68,7 +68,7 @@ trivy image three-tier-backend-legacy:latest
 trivy image three-tier-db-legacy:latest
 trivy image three-tier-nginx-legacy:latest
 ```
-### Kill The Running Images
+#### Stop The Running Images
 ```bash
 docker compose down
 ```
