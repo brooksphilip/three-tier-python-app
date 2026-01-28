@@ -51,12 +51,57 @@ cd three-tier-python-app
 
 ```bash
 # Build and start all services
-docker-compose up --build
+docker-compose up -d --build
+```
+
+### Scan Standard Images
+```bash
+# Scan with Grype
+grype three-tier-frontend-legacy:latest
+grype three-tier-backend-legacy:latest
+grype three-tier-db-legacy:latest
+grype three-tier-nginx-legacy:latest
+
+# Scan with Trivy
+trivy image three-tier-frontend-legacy:latest
+trivy image three-tier-backend-legacy:latest
+trivy image three-tier-db-legacy:latest
+trivy image three-tier-nginx-legacy:latest
+```
+## Kill The Running Images
+```bash
+docker compose down
+```
 
 # Or use the Chainguard hardened version
-docker-compose -f docker-compose-chainguard.yaml up --build
+```bash
+docker-compose -f docker-compose-chainguard.yaml up --build -d
 ```
-The application will be available at http://localhost
+
+### Scan Chainguard Images
+```bash
+# Scan with Grype
+grype three-tier-frontend-cg:latest
+grype three-tier-backend-cg:latest
+grype three-tier-db-cg:latest
+grype three-tier-nginx-cg:latest
+
+# Scan with Trivy
+trivy image three-tier-frontend-cg:latest
+trivy image three-tier-backend-cg:latest
+trivy image three-tier-db-cg:latest
+trivy image three-tier-nginx-cg:latest
+```
+
+### Compare Results
+```bash
+# Generate detailed comparison reports
+grype three-tier-frontend-legacy:latest -o json > frontend-legacy-grype.json
+grype three-tier-frontend-cg:latest -o json > frontend-cg-grype.json
+
+trivy image --format json three-tier-backend-legacy:latest > backend-legacy-trivy.json
+trivy image --format json three-tier-backend-cg:latest > backend-cg-trivy.json
+```
 
 # Appendix 
 
@@ -91,56 +136,6 @@ This repository includes two versions:
 - **docker-compose-chainguard.yaml**: Uses minimal, hardened Chainguard images
 
 The Chainguard version demonstrates significant security improvements with ~99% CVE reduction and ~83% size reduction.
-
-## Security Scanning
-
-After building the images, scan them for vulnerabilities to compare security postures:
-
-### Scan Standard Images
-```bash
-# Build standard images first
-docker-compose build
-
-# Scan with Grype
-grype three-tier-frontend-legacy:latest
-grype three-tier-backend-legacy:latest
-grype three-tier-db-legacy:latest
-grype three-tier-nginx-legacy:latest
-
-# Scan with Trivy
-trivy image three-tier-frontend-legacy:latest
-trivy image three-tier-backend-legacy:latest
-trivy image three-tier-db-legacy:latest
-trivy image three-tier-nginx-legacy:latest
-```
-
-### Scan Chainguard Images
-```bash
-# Build Chainguard images first
-docker-compose -f docker-compose-chainguard.yaml build
-
-# Scan with Grype
-grype three-tier-frontend-cg:latest
-grype three-tier-backend-cg:latest
-grype three-tier-db-cg:latest
-grype three-tier-nginx-cg:latest
-
-# Scan with Trivy
-trivy image three-tier-frontend-cg:latest
-trivy image three-tier-backend-cg:latest
-trivy image three-tier-db-cg:latest
-trivy image three-tier-nginx-cg:latest
-```
-
-### Compare Results
-```bash
-# Generate detailed comparison reports
-grype three-tier-frontend-legacy:latest -o json > frontend-legacy-grype.json
-grype three-tier-frontend-cg:latest -o json > frontend-cg-grype.json
-
-trivy image --format json three-tier-backend-legacy:latest > backend-legacy-trivy.json
-trivy image --format json three-tier-backend-cg:latest > backend-cg-trivy.json
-```
 
 ## License
 
