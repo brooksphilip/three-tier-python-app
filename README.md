@@ -73,7 +73,7 @@ trivy image three-tier-nginx-legacy:latest
 docker compose down
 ```
 
-### Use the Chainguard hardened version
+#### Use the Chainguard hardened version
 ```bash
 docker-compose -f docker-compose-chainguard.yaml up --build -d
 ```
