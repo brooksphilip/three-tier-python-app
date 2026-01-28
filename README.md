@@ -41,20 +41,20 @@ A three-tier microservices course registration application with **Python Flask f
 
 ## Quick Start
 
-## Clone Repo
+### Clone Repo
 ```bash
 git clone https://github.com/brooksphilip/three-tier-python-app
 cd three-tier-python-app
 ```
 
-### Using Docker Compose
+#### Using Docker Compose
 
 ```bash
 # Build and start all services
 docker-compose up -d --build
 ```
 
-### Scan Standard Images
+#### Scan Standard Images
 ```bash
 # Scan with Grype
 grype three-tier-frontend-legacy:latest
@@ -68,17 +68,17 @@ trivy image three-tier-backend-legacy:latest
 trivy image three-tier-db-legacy:latest
 trivy image three-tier-nginx-legacy:latest
 ```
-## Kill The Running Images
+### Kill The Running Images
 ```bash
 docker compose down
 ```
 
-# Or use the Chainguard hardened version
+### Use the Chainguard hardened version
 ```bash
 docker-compose -f docker-compose-chainguard.yaml up --build -d
 ```
 
-### Scan Chainguard Images
+#### Scan Chainguard Images
 ```bash
 # Scan with Grype
 grype three-tier-frontend-cg:latest
@@ -93,7 +93,7 @@ trivy image three-tier-db-cg:latest
 trivy image three-tier-nginx-cg:latest
 ```
 
-### Compare Results
+#### Compare Results
 ```bash
 # Generate detailed comparison reports
 grype three-tier-frontend-legacy:latest -o json > frontend-legacy-grype.json
