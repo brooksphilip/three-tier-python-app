@@ -14,63 +14,9 @@ A three-tier microservices course registration application with **Python Flask f
 ### Required
 - **Docker**: Container runtime ([Install Docker](https://docs.docker.com/get-docker/))
 - **Docker Compose**: Multi-container orchestration ([Install Docker Compose](https://docs.docker.com/compose/install/))
+- **Grype**: Binary Level Container Scanner ([Grype Github]https://github.com/anchore/grype)
+- **Trivy**: Package Level Container Scanner ([Trivy Getting Started]https://trivy.dev/docs/latest/getting-started/)
 
-### Optional - Security Scanning Tools
-
-#### Grype
-Fast vulnerability scanner for container images and filesystems.
-
-**Installation:**
-```bash
-# macOS
-brew install anchore/grype/grype
-
-# Linux
-curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
-
-# Or using Docker
-docker pull anchore/grype:latest
-```
-
-**Usage:**
-```bash
-# Scan an image
-grype three-tier-frontend-legacy:latest
-
-# Scan with specific output format
-grype three-tier-backend-cg:latest -o json
-grype three-tier-backend-cg:latest -o table
-```
-
-#### Trivy
-Comprehensive security scanner for vulnerabilities, misconfigurations, and secrets.
-
-**Installation:**
-```bash
-# macOS
-brew install aquasecurity/trivy/trivy
-
-# Linux
-wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
-echo "deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
-sudo apt-get update
-sudo apt-get install trivy
-
-# Or using Docker
-docker pull aquasec/trivy:latest
-```
-
-**Usage:**
-```bash
-# Scan an image for vulnerabilities
-trivy image three-tier-frontend-legacy:latest
-
-# Scan with specific severity levels
-trivy image --severity HIGH,CRITICAL three-tier-backend-cg:latest
-
-# Generate report
-trivy image --format json --output results.json three-tier-nginx-legacy:latest
-```
 
 ## Project Structure
 
