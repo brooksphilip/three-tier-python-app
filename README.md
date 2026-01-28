@@ -14,8 +14,8 @@ A three-tier microservices course registration application with **Python Flask f
 ### Required
 - **Docker**: Container runtime ([Install Docker](https://docs.docker.com/get-docker/))
 - **Docker Compose**: Multi-container orchestration ([Install Docker Compose](https://docs.docker.com/compose/install/))
-- **Grype**: Binary Level Container Scanner ([Grype Github]https://github.com/anchore/grype)
-- **Trivy**: Package Level Container Scanner ([Trivy Getting Started]https://trivy.dev/docs/latest/getting-started/)
+- **Grype**: Binary Level Container Scanner ([Grype Github](https://github.com/anchore/grype)
+- **Trivy**: Package Level Container Scanner ([Trivy Getting Started](https://trivy.dev/docs/latest/getting-started/)
 
 
 ## Project Structure
