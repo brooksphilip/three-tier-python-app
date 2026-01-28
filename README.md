@@ -56,8 +56,9 @@ docker-compose up --build
 # Or use the Chainguard hardened version
 docker-compose -f docker-compose-chainguard.yaml up --build
 ```
-
 The application will be available at http://localhost
+
+# Appendix 
 
 ### Running Frontend Locally
 
