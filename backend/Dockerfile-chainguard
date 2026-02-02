@@ -8,7 +8,7 @@ COPY pip.conf /etc/pip.conf
 COPY backend/requirements.txt requirements.txt
 
 RUN python -m venv /app/venv && \
-    /app/venv/bin/pip install --no-cache-dir -r requirements.cg.txt
+    /app/venv/bin/pip install --no-cache-dir -r requirements.txt
 
 FROM cgr.dev/chainguard/python:latest
 

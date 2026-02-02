@@ -1,11 +1,11 @@
 # Web framework
-Flask==3.0.0
+Flask==3.1.2
 
 # WSGI server for production
-gunicorn==21.2.0
+gunicorn==25.0.0
 
 #Chainguard
-urllib3==2.6.0
+urllib3==2.6.3
 
 # Optional: Additional useful packages you can swap in/out
 # Flask-CORS==4.0.0  # For CORS support

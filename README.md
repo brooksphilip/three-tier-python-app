@@ -41,33 +41,26 @@ A three-tier microservices course registration application with **Python Flask f
 
 ## Quick Start
 
-#### Clone Repo
+#### Clone Repo & Set up pip
 ```bash
 git clone https://github.com/brooksphilip/three-tier-python-app
 cd three-tier-python-app
+cp pip.default pip.conf
 ```
+
 
 #### Using Docker Compose
 
 ```bash
 # Build and start all services
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 #### Scan Standard Images
 ```bash
-# Scan with Grype
-grype three-tier-frontend-legacy:latest
-grype three-tier-backend-legacy:latest
-grype three-tier-db-legacy:latest
-grype three-tier-nginx-legacy:latest
-
-# Scan with Trivy
-trivy image three-tier-frontend-legacy:latest
-trivy image three-tier-backend-legacy:latest
-trivy image three-tier-db-legacy:latest
-trivy image three-tier-nginx-legacy:latest
+./scanner_diff.py three-tier-frontend-legacy three-tier-backend-legacy three-tier-db-legacy three-tier-nginx-legacy
 ```
+
 #### Stop The Running Images
 ```bash
 docker compose down
@@ -81,27 +74,16 @@ docker-compose -f docker-compose-chainguard.yaml up --build -d
 #### Scan Chainguard Images
 ```bash
 # Scan with Grype
-grype three-tier-frontend-cg:latest
-grype three-tier-backend-cg:latest
-grype three-tier-db-cg:latest
-grype three-tier-nginx-cg:latest
+./scanner_diff.py three-tier-backend-cg three-tier-frontend-cg three-tier-db-cg three-tier-nginx-cg 
+```
 
-# Scan with Trivy
-trivy image three-tier-frontend-cg:latest
-trivy image three-tier-backend-cg:latest
-trivy image three-tier-db-cg:latest
-trivy image three-tier-nginx-cg:latest
+#### Stop The Running Images
+```bash
+docker compose down
 ```
 
 #### Compare Results
-```bash
-# Generate detailed comparison reports
-grype three-tier-frontend-legacy:latest -o json > frontend-legacy-grype.json
-grype three-tier-frontend-cg:latest -o json > frontend-cg-grype.json
 
-trivy image --format json three-tier-backend-legacy:latest > backend-legacy-trivy.json
-trivy image --format json three-tier-backend-cg:latest > backend-cg-trivy.json
-```
 
 # Appendix 
 

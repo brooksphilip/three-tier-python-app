@@ -5,8 +5,8 @@ WORKDIR /app
 # Copy pip.conf for custom package index
 COPY pip.conf /etc/pip.conf
 
-COPY frontend/requirements.cg.txt requirements.cg.txt
-RUN pip install --no-cache-dir -r requirements.cg.txt --user
+COPY frontend/requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt --user
 
 FROM cgr.dev/chainguard/python:latest
 
