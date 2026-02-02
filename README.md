@@ -12,6 +12,7 @@ A three-tier microservices course registration application with **Python Flask f
 ## Prerequisites
 
 ### Required
+- **Python**: Python  ([Install Python](https://www.python.org/downloads/))
 - **Docker**: Container runtime ([Install Docker](https://docs.docker.com/get-docker/))
 - **Docker Compose**: Multi-container orchestration ([Install Docker Compose](https://docs.docker.com/compose/install/))
 - **Grype**: Binary Level Container Scanner ([Grype Github](https://github.com/anchore/grype))
