@@ -184,9 +184,23 @@ class VulnerabilityScanner:
         }
 
     def print_summary(self):
-        """Print cumulative summary to stdout."""
+        """Print per-image breakdown and cumulative summary to stdout."""
         report = self.generate_report()
 
+        # Per-image breakdown
+        for result in self.results:
+            print(f"{result['image']}:")
+            trivy_sev = result["trivy"]["severity"]
+            grype_sev = result["grype"]["severity"]
+            print(f"  Trivy:  {result['trivy']['total']:3d}  (C:{trivy_sev.get('CRITICAL', 0)} H:{trivy_sev.get('HIGH', 0)} M:{trivy_sev.get('MEDIUM', 0)} L:{trivy_sev.get('LOW', 0)})")
+            print(f"  Grype:  {result['grype']['total']:3d}  (C:{grype_sev.get('CRITICAL', 0)} H:{grype_sev.get('HIGH', 0)} M:{grype_sev.get('MEDIUM', 0)} L:{grype_sev.get('LOW', 0)})")
+            print()
+
+        # Cumulative summary
+        print("=" * 50)
+        print("CUMULATIVE TOTAL")
+        print("=" * 50)
+        print()
         print("Trivy:")
         print(f"  Total: {report['summary']['trivy']['total_findings']}")
         for severity in ["CRITICAL", "HIGH", "MEDIUM", "LOW"]:
